@@ -1,0 +1,54 @@
+<html>
+<body>
+
+<canvas tabIndex="1"  onkeypress="moverderecha(event)" id="myCanvas" width="200" height="350" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<p id="pos2"></p>
+
+<script>
+//document.getElementById("myCanvas").focus();
+function keyPressf(event) {
+    var code = event.which || event.keyCode;
+    document.getElementById("pos2").innerHTML = "Code: " + code;
+}
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+xc=70;
+yc=50;
+setInterval(drawCircle, 60);
+velocidad = 10;
+velocidadx = 7;
+
+function drawCircle() {
+  ctx.clearRect(0,0,c.width, c.height);
+  ctx.beginPath();
+  ctx.arc(xc,yc,20,0,2*Math.PI);
+  ctx.stroke();
+  if (yc > c.height) {
+    velocidad = -velocidad;
+  }
+  if (yc < 0) {
+    velocidad = -velocidad;
+  }
+  yc = yc + velocidad;
+
+  if (xc > c.width) {
+    velocidadx = -velocidadx;
+  }
+  if (xc < 0) {
+    velocidadx = -velocidadx;
+  }
+  xc += velocidadx;
+}
+
+function moverderecha(event) {
+	velocidadx += 10
+}
+</script>
+
+</body>
+</html>
